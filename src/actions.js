@@ -1,4 +1,4 @@
-import { FETCHING_DATA } from "./constants";
+import { FETCHING_DATA, FETCHING_NEWS } from "./constants";
 import people from './apis/people'
 
 const fetchData = () => {
@@ -7,4 +7,10 @@ const fetchData = () => {
   }
 }
 
-export { fetchData }
+const fetchNews = () => {
+  return {
+    type: FETCHING_NEWS,
+  }
+}
+
+export { fetchData, fetchNews }

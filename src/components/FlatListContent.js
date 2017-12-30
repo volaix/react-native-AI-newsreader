@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
-import { List } from "react-native-elements";
-import Content from "./Content";
+import React, { Component } from "react"
+import { View, Text, FlatList, ActivityIndicator } from "react-native"
+import { List } from "react-native-elements"
+import Content from "./Content"
 import styled, { css } from "styled-components/native"
+import { connect } from 'react-redux'
 
 const ContentContainer = styled.View`
   backgroundColor: green;
@@ -27,24 +28,18 @@ class FlatListContent extends Component {
     error: null,
     refreshing: false,
     todoSagaData: [],
+    sagaState: 'im default from flatlistcontent',
   }
 
   componentDidMount() {
-    console.log('making request to thewest api')
     this.makeRemoteRequest();
   }
 
   makeRemoteRequest = () => {
-    console.log('making remote request')
-    console.log('default this.state.page = ', this.state.page )
-    console.log('pageAddOne =', pageAddOne)
     const { page } = this.state
-    console.log('requesting page number', page)
     const url = `https://content.thewest.com.au/v3/publication?page=${page}&page_offset=0&page_size=5&topics=news%2Foffbeat`
     const pageAddOne = this.state.page + 1
     this.setState({ loading: true, page:pageAddOne });
-    console.log('after adding +1 this.state.page = ', this.state.page)
-    console.log('loading value = ', this.state.loading)
     fetch(url)
       .then(res => res.json())
       .then(res => {
@@ -119,4 +114,10 @@ class FlatListContent extends Component {
   }
 }
 
-export default FlatListContent;
+const mapStateToProps = (state, props) => {
+    return {
+        newsList: state.newsReader.newsList
+    }
+}
+
+export default connect(mapStateToProps)(FlatListContent)

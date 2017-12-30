@@ -5,9 +5,10 @@ const initialState = {
   dataFetched: false,
   isFetching: false,
   error: false,
+  newsList: 'I come from redux'
 }
 
-export default newReducerName1646 = (state = initialState, action) => {
+export default newsReader = (state = initialState, action) => {
   switch (action.type){
     case FETCHING_DATA:
       return {

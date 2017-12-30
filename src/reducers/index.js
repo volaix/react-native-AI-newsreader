@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import dataReducer from './dataReducer'
+import newsReader from './newsReader'
 
 const rootReducer = combineReducers({
-  dataReducer,
+  newsReader,
 })
 
 export default rootReducer
