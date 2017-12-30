@@ -1,5 +1,5 @@
 import { FETCHING_DATA } from "./constants";
-import getPeople from './api'
+import people from './apis/people'
 
 const fetchData = () => {
   return {

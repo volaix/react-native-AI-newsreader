@@ -7,7 +7,7 @@ import styled, { css } from "styled-components/native"
 const ContentContainer = styled.View`
   backgroundColor: green;
   width: 100%;
-  height: 87%;
+  height: 90%;
 `
 //TODO: Fix height so it's a percentage
 const ContentBox = styled.View`

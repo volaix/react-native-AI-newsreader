@@ -1,6 +1,6 @@
-import { FETCHING_DATA, FETCHING_DATA_FAILURE, FETCHING_DATA_SUCCESS } from './constants'
+import { FETCHING_DATA, FETCHING_DATA_FAILURE, FETCHING_DATA_SUCCESS } from '../constants'
 import { put, takeEvery } from 'redux-saga/effects'
-import getPeople from './api'
+import people from '../apis/people'
 
 const fetchData = function* (action) {
   try {

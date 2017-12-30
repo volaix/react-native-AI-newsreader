@@ -3,7 +3,7 @@ import reducers from './reducers'
 import { composeWithDevTools } from 'remote-redux-devtools'
 
 import createSagaMiddleware from 'redux-saga'
-import dataSaga from './saga'
+import dataSaga from './sagas/saga'
 
 const sagaMiddleware = createSagaMiddleware()
 

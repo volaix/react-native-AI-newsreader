@@ -1,32 +1,40 @@
 import React from 'react'
 import { View, Text, AppRegistry, StyleSheet, FlatList } from 'react-native'
+import { Header } from 'react-native-elements'
 import ReduxExamples from './components/ReduxExamples'
 import styled, { css }from "styled-components/native"
 import Content from './components/Content'
 
 import { Provider } from 'react-redux'
 import configureStore from './configureStore'
-import FlatListContent from './components/FlatListContent';
+import FlatListContent from './components/FlatListContent'
 
 const store = configureStore()
 
-const Header = styled.View`
+const HeaderContainer = styled.View`
   backgroundColor: red;
   width: 100%;
   height: 10%;
 `
-const Footer = styled.View`
-  backgroundColor: aqua;
-  width: 100%;
-  height: 3%;
-`
+
+class TopHeader extends React.Component{
+  render(){
+    return (
+<HeaderContainer>
+      <Header
+        centerComponent={{ text: 'Reader', style: { color: '#fff' } }}
+        rightComponent={{ icon: 'info', color: '#fff' }}
+      />
+</HeaderContainer>
+    )
+  }
+}
 
 const ReduxApp = () => (
   <Provider store={store}>
     <View style={styles.container}>
-      <Header />
+      <TopHeader />
       <FlatListContent />
-      <Footer />
     </View>
   </Provider>
 )
