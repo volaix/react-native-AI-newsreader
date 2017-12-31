@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import reducers from './reducers'
+import reducers from '../reducers'
 import { composeWithDevTools } from 'remote-redux-devtools'
 
 import createSagaMiddleware from 'redux-saga'
-import newsSaga from './sagas/newsSaga'
+import newsSaga from '../sagas/newsSaga'
 
 const sagaMiddleware = createSagaMiddleware()
 

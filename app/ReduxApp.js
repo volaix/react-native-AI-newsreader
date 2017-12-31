@@ -5,7 +5,7 @@ import styled, { css } from "styled-components/native"
 import Content from './components/Content'
 
 import { Provider } from 'react-redux'
-import configureStore from './configureStore'
+import configureStore from './config/configureStore'
 import FlatListContent from './components/FlatListContent'
 
 const store = configureStore()
