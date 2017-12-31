@@ -1,5 +1,4 @@
-import { FETCHING_DATA, FETCHING_NEWS } from "./constants";
-import people from './apis/people'
+import { FETCHING_DATA, FETCHING_NEWS, INCREASING_CURRENT_PAGE } from "./constants";
 
 const fetchData = () => {
   return {
@@ -7,10 +6,18 @@ const fetchData = () => {
   }
 }
 
-const fetchNews = () => {
+const fetchNews = (page) => {
+  console.log('the value of page in the actions.js for fetchNewsis', page) //need this to be 1
   return {
     type: FETCHING_NEWS,
+    page,
   }
 }
 
-export { fetchData, fetchNews }
+const increaseCurrentPage = () => {
+ return {
+   type: INCREASING_CURRENT_PAGE,
+ } 
+}
+
+export { fetchData, fetchNews, increaseCurrentPage }

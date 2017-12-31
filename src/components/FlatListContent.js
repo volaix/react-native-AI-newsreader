@@ -4,6 +4,7 @@ import { List } from "react-native-elements"
 import Content from "./Content"
 import styled, { css } from "styled-components/native"
 import { connect } from 'react-redux'
+import { fetchNews, increaseCurrentPage } from '../actions'
 
 const ContentContainer = styled.View`
   backgroundColor: green;
@@ -32,41 +33,13 @@ class FlatListContent extends Component {
   }
 
   componentDidMount() {
-    this.makeRemoteRequest();
+    this.makeRemoteRequest()
   }
 
-  makeRemoteRequest = () => {
-    const { page } = this.state
-    const url = `https://content.thewest.com.au/v3/publication?page=${page}&page_offset=0&page_size=5&topics=news%2Foffbeat`
-    const pageAddOne = this.state.page + 1
-    this.setState({ loading: true, page:pageAddOne });
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-        const relevantData = res.documents.map((item, index) => {
-
-          const imageURL = item.posterImage ? item.posterImage.reference : item.mainImage.reference
-          const heading = item.heading
-
-          return {
-            heading,
-            imageURL,
-          }
-        })
-
-        this.setState( prevState => ({
-          loading: false,
-          todoSagaData: [...prevState.todoSagaData, ...relevantData],
-        }))
-      })
-      
-      .catch(error => {
-        console.log('there was an error, TODO make an error message display')
-        console.log('the error is', error)
-        this.setState({ error, loading: false });
-      });
-  };
-
+  makeRemoteRequest = async () => {
+    await this.props.increaseCurrentPage()
+    await this.props.fetchNews(this.props.currentNewsPage)
+  }
 
   renderFooter = () => {
     if (!this.state.loading) return null;
@@ -97,7 +70,7 @@ class FlatListContent extends Component {
       <ContentContainer> 
         <FlatList
           ListFooterComponent={this.renderFooter}
-          data={this.state.todoSagaData}
+          data={this.props.newsList}
           onEndReached={this.endReached}
           keyExtractor={ (item, index) => item.heading} 
           renderItem={( { item, index }) => ( 
@@ -116,8 +89,14 @@ class FlatListContent extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        newsList: state.newsReader.newsList
+        newsList: state.newsReader.newsList,
+        currentNewsPage: state.newsReader.currentNewsPage,
     }
 }
 
-export default connect(mapStateToProps)(FlatListContent)
+const mapDispatchToProps = {
+  fetchNews,
+  increaseCurrentPage,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlatListContent)

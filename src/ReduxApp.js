@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, AppRegistry, StyleSheet, FlatList } from 'react-native'
 import { Header } from 'react-native-elements'
-import ReduxExamples from './components/ReduxExamples'
 import styled, { css }from "styled-components/native"
 import Content from './components/Content'
 
@@ -40,7 +39,6 @@ const ReduxApp = () => (
 )
 
 export default ReduxApp
-
 
 const styles = StyleSheet.create({
   container: {

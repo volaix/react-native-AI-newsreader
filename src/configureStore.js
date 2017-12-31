@@ -3,7 +3,7 @@ import reducers from './reducers'
 import { composeWithDevTools } from 'remote-redux-devtools'
 
 import createSagaMiddleware from 'redux-saga'
-import dataSaga from './sagas/saga'
+import newsSaga from './sagas/newsSaga'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -13,7 +13,6 @@ const createStoreWithMiddleware = composeWithDevTools(
 
 export default configureStore = () => {
   const store = createStoreWithMiddleware(reducers)
-  sagaMiddleware.run(dataSaga)
-
+  sagaMiddleware.run(newsSaga)
   return store
 }
