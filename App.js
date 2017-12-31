@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import ReduxApp from './src/ReduxApp'
+import ReduxApp from './app/ReduxApp'
 
 export default class App extends React.Component {
   render() {
