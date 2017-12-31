@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, AppRegistry, StyleSheet, FlatList } from 'react-native'
 import { Header } from 'react-native-elements'
-import styled, { css }from "styled-components/native"
+import styled, { css } from "styled-components/native"
 import Content from './components/Content'
 
 import { Provider } from 'react-redux'
@@ -16,35 +16,33 @@ const HeaderContainer = styled.View`
   height: 10%;
 `
 
-class TopHeader extends React.Component{
-  render(){
+const ReduxAppView = styled.View`
+  flex: 1;
+  backgroundColor: white;
+  align-items: center;
+  justify-content: center;
+`
+
+class TopHeader extends React.Component {
+  render() {
     return (
-<HeaderContainer>
-      <Header
-        centerComponent={{ text: 'Reader', style: { color: '#fff' } }}
-        rightComponent={{ icon: 'info', color: '#fff' }}
-      />
-</HeaderContainer>
+      <HeaderContainer>
+        <Header
+          centerComponent={{ text: 'Reader', style: { color: '#fff' } }}
+          rightComponent={{ icon: 'info', color: '#fff' }}
+        />
+      </HeaderContainer>
     )
   }
 }
 
 const ReduxApp = () => (
   <Provider store={store}>
-    <View style={styles.container}>
+    <ReduxAppView>
       <TopHeader />
       <FlatListContent />
-    </View>
+    </ReduxAppView>
   </Provider>
 )
 
 export default ReduxApp
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
