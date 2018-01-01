@@ -11,7 +11,6 @@ const ContentContainer = styled.View`
   width: 100%;
   height: 100%;
 `
-//TODO: Fix height so it's a percentage
 const ContentBox = styled.View`
   backgroundColor: yellow;
   height: 500px;
@@ -42,8 +41,7 @@ class FlatListContent extends Component {
   }
 
   renderFooter = () => {
-    if (!this.state.loading) return null;
-
+    if (!this.state.loading) return null
     return (
       <View
         style={{

@@ -6,7 +6,7 @@ const location = 'australiaeast'
 const requestURL = `https://${location}.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=${visualFeatures}&language=en`
 
 import React from 'react'
-import { Image, TouchableOpacity, View, Text, StyleSheet } from 'react-native'
+import { Image, TouchableOpacity, View, Text, StyleSheet, ImageBackground } from 'react-native'
 
 import { connect } from 'react-redux'
 import { fetchData } from '../actions'
@@ -24,7 +24,7 @@ const MainContent = styled.View`
 const ContentView = styled.View`
   backgroundColor: yellow;
   width: 100%;
-  height: 80%;
+  height: 100%;
   align-items: center;
 `
 
@@ -46,12 +46,14 @@ const TagBox = styled.View`
   height: 20%;
 `
 
-const Heading = styled.Text`
-  color: black;
+const OverlayText = styled.Text`
+  color: white;
+  font-size: 60;
+  background-color: 'rgba(0, 0, 0, .5)';
+}
 `
 
 class Content extends React.Component {
-
 
   state = {
     imageNumber: null,
@@ -91,21 +93,22 @@ class Content extends React.Component {
   render() {
     return (
       <ContentView>
-
-        <Heading>{this.props.heading}</Heading>
         <TempSpacer />
         <ImageContainer>
-          <Image
+          <ImageBackground
             source={{ uri: this.props.imageURL }}
             style={{
               flex: 1,
               alignSelf: 'stretch',
               width: undefined,
               height: undefined,
+              backgroundColor: 'rgba(0,0,0,0)',
+              overflow: 'hidden',
             }}
-          />
+          >
+          <OverlayText numberOfLines={2} ellipsizeMode='tail'>{this.props.heading.toUpperCase()}</OverlayText>
+          </ImageBackground>
         </ImageContainer>
-
 
         <Button
           icon={{ name: 'code' }}

@@ -7,38 +7,37 @@ import FlatListContent from '../components/FlatListContent'
 import { Icon } from 'react-native-elements'
 import { MAIN_COLOR } from '../config/sharedColors'
 
-
-const ReduxAppView = styled.View`
+const HomeScreenView = styled.View`
   flex: 1;
   backgroundColor: white;
   align-items: center;
   justify-content: center;
 `
+
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
 
     const headerRight = (
-      <Icon name={'info-outline'} onPress={() => { navigation.navigate('Info') }} />
+      <View style={{marginRight: 10}}>
+        <Icon
+          name={'info-outline'}
+          color={MAIN_COLOR}
+          onPress={() => { navigation.navigate('Info') }} />
+      </View>
     )
 
     return {
       title: 'News Reader',
       headerRight,
-      headerStyle: {
-        backgroundColor: MAIN_COLOR,
-      },
-      headerTintColor: 'white',
-      //todo move icon to a new function thing
+      headerTintColor: 'dimgrey',
     }
   }
 
   render() {
     return (
-        <ReduxAppView>
-          <View style={{ width: '100%', }}>
-            <FlatListContent />
-          </View>
-        </ReduxAppView>
+      <HomeScreenView>
+        <FlatListContent />
+      </HomeScreenView>
     )
   }
 }

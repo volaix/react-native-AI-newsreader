@@ -10,9 +10,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-      <View style={{flex:1, backgroundColor: 'blue'}}>
-      <RootNavigator />
-      </View>
+        <RootNavigator />
       </Provider>
     );
   }
