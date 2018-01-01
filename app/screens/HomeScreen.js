@@ -3,14 +3,10 @@ import { View, Text, AppRegistry, StyleSheet, FlatList } from 'react-native'
 import { Header } from 'react-native-elements'
 import styled, { css } from "styled-components/native"
 import Content from '../components/Content'
-
-import { Provider } from 'react-redux'
-import configureStore from '../config/configureStore'
 import FlatListContent from '../components/FlatListContent'
 import { Icon } from 'react-native-elements'
-import { MAIN_COLOR } from '../config/sharedColors';
+import { MAIN_COLOR } from '../config/sharedColors'
 
-const store = configureStore()
 
 const ReduxAppView = styled.View`
   flex: 1;
@@ -38,13 +34,11 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
         <ReduxAppView>
           <View style={{ width: '100%', }}>
             <FlatListContent />
           </View>
         </ReduxAppView>
-      </Provider>
     )
   }
 }
