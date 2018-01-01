@@ -14,6 +14,7 @@ import { fetchData } from '../actions'
 import styled, { css } from "styled-components/native"
 
 import { Button, Header } from 'react-native-elements'
+import { MAIN_COLOR } from '../config/sharedColors';
 
 
 const MainContent = styled.View`
@@ -22,13 +23,13 @@ const MainContent = styled.View`
 `
 
 const ContentView = styled.View`
-  backgroundColor: yellow;
   width: 100%;
   height: 100%;
   align-items: center;
 `
 
 const ImageContainer = styled.View`
+  margin-bottom: 1%;
   backgroundColor: grey;
   width: 95%;
   height: 70%;
@@ -41,7 +42,8 @@ const TempSpacer = styled.View`
 `
 
 const TagBox = styled.View`
-  backgroundColor: lime;
+  margin-top: 1%;
+  backgroundColor: hsl(0, 0%, 85%);
   width: 95%;
   height: 20%;
 `
@@ -63,8 +65,15 @@ class Content extends React.Component {
     confidence: null,
   }
 
+  makeRemoteRequest = async () => {
+    console.log('making remote request')
+    
+  }
+
   handleButtonClick = () => {
-    console.log(`handlebuttonclick has been clicked`)
+    console.log(`You have clicked the button`)
+    this.makeRemoteRequest()
+
     const imgURL = this.props.imageURL
 
     const myBody = JSON.stringify({ "url": imgURL })
@@ -93,7 +102,6 @@ class Content extends React.Component {
   render() {
     return (
       <ContentView>
-        <TempSpacer />
         <ImageContainer>
           <ImageBackground
             source={{ uri: this.props.imageURL }}
@@ -112,19 +120,24 @@ class Content extends React.Component {
 
         <Button
           icon={{ name: 'code' }}
-          title='Generate Tags'
+          title='Phone, what do you think this is?'
           onPress={this.handleButtonClick}
           containerViewStyle={{ width: '95%', }}
+          backgroundColor= {MAIN_COLOR}
         />
 
-        <TempSpacer />
-
-        <TagBox>
+        <TagBox style={{ alignItems: 'center', justifyContent: 'center'}}>
           {
             this.state.tags ?
-              <Text>{this.state.tags}</Text>
+              <View style={{ justifyContent: "flex-start"}}>
+                <Text>Hmmm... I would say it contains...</Text>
+                <Text numberOfLines={3} style={{ color: MAIN_COLOR }}>{this.state.tags}</Text>
+                <Text>Iunno. Does that sound right...? </Text>
+              </View>
               :
-              <Text>Tags will go here</Text>
+              <View >
+                <Text>Press the button :)</Text>
+              </View>
           }
         </TagBox>
 

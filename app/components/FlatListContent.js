@@ -1,19 +1,26 @@
 import React, { Component } from "react"
 import { View, Text, FlatList, ActivityIndicator } from "react-native"
-import { List } from "react-native-elements"
+import { Card, List } from "react-native-elements"
 import Content from "./Content"
 import styled, { css } from "styled-components/native"
 import { connect } from 'react-redux'
 import { fetchNews, increaseCurrentPage } from '../actions'
 
 const ContentContainer = styled.View`
-  backgroundColor: green;
+  backgroundColor: hsl(0, 0%, 95%);
   width: 100%;
   height: 100%;
 `
+
 const ContentBox = styled.View`
-  backgroundColor: yellow;
   height: 500px;
+`
+
+const Seperator = styled.View`
+  height: 1;
+  margin-top: 30;
+  backgroundColor: hsl(120, 2%, 81%),
+  margin-bottom: 20;
 `
 
 const ContentViewInContainer = styled.View`
@@ -40,6 +47,10 @@ class FlatListContent extends Component {
     await this.props.fetchNews(this.props.currentNewsPage)
   }
 
+  endReached = () => {
+    this.makeRemoteRequest()
+  }
+
   renderFooter = () => {
     if (!this.state.loading) return null
     return (
@@ -58,9 +69,16 @@ class FlatListContent extends Component {
     )
   }
 
-  endReached = () => {
-    console.log('ive reached the end of the scroll')
-    this.makeRemoteRequest()
+  renderSeparator = () => {
+    return (
+      <Seperator />
+    )
+  }
+
+  renderHeader = () => {
+    return (
+      <View style={{marginBottom: 20}} />
+    )
   }
 
   render() {
@@ -71,6 +89,8 @@ class FlatListContent extends Component {
           data={this.props.newsList}
           onEndReached={this.endReached}
           keyExtractor={ (item, index) => item.heading} 
+          ItemSeparatorComponent = {this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
           renderItem={( { item, index }) => ( 
             <ContentBox >
               <Content 
