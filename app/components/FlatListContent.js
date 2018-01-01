@@ -9,7 +9,7 @@ import { fetchNews, increaseCurrentPage } from '../actions'
 const ContentContainer = styled.View`
   backgroundColor: green;
   width: 100%;
-  height: 90%;
+  height: 100%;
 `
 //TODO: Fix height so it's a percentage
 const ContentBox = styled.View`
