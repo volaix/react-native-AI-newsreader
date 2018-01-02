@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native'
-import { Card } from 'react-native-elements'
+import { View, Text, } from 'react-native'
+import { Button, Card } from 'react-native-elements'
+import { MAIN_COLOR } from '../config/sharedColors';
 
 class ArticleScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -11,8 +12,16 @@ class ArticleScreen extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
-        <Card title={params.articleName}>
-          <Text>TODO display individual articles here</Text>
+        <Card
+          title={params.articleName}
+          titleStyle={{fontSize: 40}}
+          image={{ uri: params.imageURL }}
+        >
+          <Button
+            icon={{ name: 'code' }}
+            backgroundColor={MAIN_COLOR}
+            buttonStyle={{ width: '100%' }}
+            title='This world is preposterous!' />
         </Card>
       </View>
     )

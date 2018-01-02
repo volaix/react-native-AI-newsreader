@@ -9,6 +9,7 @@ import styled, { css } from "styled-components/native"
 import { Button, Header } from 'react-native-elements'
 import { MAIN_COLOR } from '../config/sharedColors';
 import azureApi from '../apis/azureApi';
+import TagBox from './TagBox'
 
 
 const MainContent = styled.View`
@@ -30,12 +31,6 @@ const ImageContainer = styled.View`
   height: 70%;
 `
 
-const TagBox = styled.View`
-  margin-top: 1%;
-  backgroundColor: hsl(0, 0%, 85%);
-  width: 95%;
-  height: 20%;
-`
 
 const OverlayText = styled.Text`
   color: white;
@@ -47,7 +42,6 @@ const OverlayText = styled.Text`
 class Content extends React.Component {
 
   state = {
-    imageNumber: null,
     tags: null,
     generateTagsLoading: null,
     textGuess: null,
@@ -57,35 +51,43 @@ class Content extends React.Component {
   makeRemoteRequest = async () => {
     //todo connect this up to redux and pass down 
     const result = await azureApi(this.props.imageURL)
-    console.log(`response from azureApi`, result)
     const tags = await result.description.tags.join(', ')
     const textGuess = await result.description.captions[0].text
-    const confidence = await result.description.captions[0].confidence.toFixed(2) * 100
-    this.setState({ tags, textGuess, confidence })
+    const confidenceUnreliable = await (result.description.captions[0].confidence.toFixed(2) * 100)
+    const confidence = await Math.floor(confidenceUnreliable)
+    this.setState({
+      tags,
+      textGuess,
+      confidence,
+      generateTagsLoading: false,
+    })
   }
 
   handleButtonClick = () => {
+    this.setState({ generateTagsLoading: true })
     this.makeRemoteRequest()
   }
 
   imagePress = () => {
-    console.log('hello', this.props.heading)
+    const imageURL = this.props.imageURL
     const articleName = this.props.heading
-    this.props.navigation.navigate('Article', { articleName, });
+    this.props.navigation.navigate('Article', {
+      articleName,
+      imageURL
+    });
   }
 
   render() {
     return (
       <ContentView>
-        <TouchableOpacity style={{flex:1}} onPress={this.imagePress}>
+        <TouchableOpacity style={{ flex: 1 }} onPress={this.imagePress}>
           <ImageContainer>
             <ImageBackground
               onPress={this.imagePress}
               source={{ uri: this.props.imageURL }}
               style={{
                 flex: 1,
-                alignSelf: 'stretch',
-                width: undefined,
+                width: '100%',
                 height: undefined,
                 backgroundColor: 'rgba(0,0,0,0)',
                 overflow: 'hidden',
@@ -104,27 +106,12 @@ class Content extends React.Component {
           backgroundColor={MAIN_COLOR}
         />
 
-        <TagBox style={{ alignItems: 'center', justifyContent: 'center' }}>
-          {
-            this.state.tags ?
-              <View style={{ justifyContent: "flex-start" }}>
-                <Text numberOfLines={2}>
-                  Hmm... Is it...
-                  <Text style={{ color: MAIN_COLOR }}> {this.state.textGuess}</Text>
-                  ? I would say it contains...
-                </Text>
-                <Text numberOfLines={3} style={{ color: MAIN_COLOR }}>{this.state.tags}</Text>
-                <Text numberOfLines={1}>Does that sound right...? I am
-                  <Text style={{ color: MAIN_COLOR }}> {this.state.confidence}</Text>
-                  % confident.</Text>
-              </View>
-              :
-              <View >
-                <Text>Press the button :)</Text>
-              </View>
-          }
-        </TagBox>
-
+        <TagBox
+          textGuess={this.state.textGuess}
+          tags={this.state.tags}
+          confidence={this.state.confidence}
+          generateTagsLoading={this.state.generateTagsLoading}
+        />
       </ContentView>
     )
   }

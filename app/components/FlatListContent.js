@@ -28,15 +28,6 @@ const ContentViewInContainer = styled.View`
 `
 
 class FlatListContent extends Component {
-  state = {
-    loading: false,
-    data: [{key: 'a'}, {key: 'b'}, {key: 'c'}],
-    page: 1,
-    error: null,
-    refreshing: false,
-    todoSagaData: [],
-    sagaState: 'im default from flatlistcontent',
-  }
 
   componentDidMount() {
     this.makeRemoteRequest()
@@ -52,7 +43,7 @@ class FlatListContent extends Component {
   }
 
   renderFooter = () => {
-    if (!this.state.loading) return null
+    if (!this.props.isFetching) return null
     return (
       <View
         style={{
@@ -110,6 +101,7 @@ const mapStateToProps = (state, props) => {
     return {
         newsList: state.newsReader.newsList,
         currentNewsPage: state.newsReader.currentNewsPage,
+        isFetching: state.newsReader.isFetching,
     }
 }
 

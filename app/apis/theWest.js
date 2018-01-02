@@ -8,10 +8,12 @@ const theWest = async (page) => {
   const relevantData = json.documents.map((item, index) => {
     //json response is inconsistent. imageURL filters so that there's always an image found
     const imageURL = item.posterImage ? item.posterImage.reference : item.mainImage.reference
+    const info = item.videoDescription
     const heading = item.heading
     return {
       heading,
       imageURL,
+      // videoDescription
     }
   })
 
