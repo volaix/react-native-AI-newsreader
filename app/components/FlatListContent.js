@@ -87,6 +87,7 @@ class FlatListContent extends Component {
               <Content 
               heading={item.heading}
               imageURL = { item.imageURL }
+              info = { item.info }
               navigation = {this.props.navigation}
               />
             </ContentBox>

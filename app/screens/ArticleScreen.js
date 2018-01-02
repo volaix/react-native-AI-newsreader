@@ -17,10 +17,11 @@ class ArticleScreen extends React.Component {
           titleStyle={{fontSize: 40}}
           image={{ uri: params.imageURL }}
         >
+        <Text style={{color: 'grey'}}>{params.info}</Text>
           <Button
             icon={{ name: 'code' }}
             backgroundColor={MAIN_COLOR}
-            buttonStyle={{ width: '100%' }}
+            buttonStyle={{ width: '100%', marginTop: '5%' }}
             title='This world is preposterous!' />
         </Card>
       </View>

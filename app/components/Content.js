@@ -71,9 +71,12 @@ class Content extends React.Component {
   imagePress = () => {
     const imageURL = this.props.imageURL
     const articleName = this.props.heading
+    const info = this.props.info
+
     this.props.navigation.navigate('Article', {
       articleName,
-      imageURL
+      imageURL,
+      info
     });
   }
 

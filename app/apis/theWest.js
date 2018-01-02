@@ -13,7 +13,7 @@ const theWest = async (page) => {
     return {
       heading,
       imageURL,
-      // videoDescription
+      info,
     }
   })
 
