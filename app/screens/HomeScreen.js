@@ -16,7 +16,6 @@ const HomeScreenView = styled.View`
 
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-
     const headerRight = (
       <View style={{marginRight: 10}}>
         <Icon
@@ -34,6 +33,7 @@ class HomeScreen extends React.Component {
   }
 
   render() {
+    {console.log('hello', this.props.navigation)}
     return (
       <HomeScreenView>
         <FlatListContent />
