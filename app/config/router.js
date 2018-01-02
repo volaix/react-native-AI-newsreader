@@ -16,7 +16,13 @@ const RootNavigator = StackNavigator({
       headerTintColor: MAIN_COLOR,
     },
   },
-  Article: { screen: ArticleScreen }
+  Article: {
+    screen: ArticleScreen,
+    navigationOptions: {
+      headerTitleStyle: { color: TEXT_DARKGREY },
+      headerTintColor: MAIN_COLOR,
+    },
+  }
 })
 
 export default RootNavigator;

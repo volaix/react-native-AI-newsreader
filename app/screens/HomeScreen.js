@@ -33,10 +33,9 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    {console.log('hello', this.props.navigation)}
     return (
       <HomeScreenView>
-        <FlatListContent />
+        <FlatListContent navigation={this.props.navigation} />
       </HomeScreenView>
     )
   }

@@ -23,6 +23,7 @@ const ContentView = styled.View`
 `
 
 const ImageContainer = styled.View`
+  flex: 1;
   margin-bottom: 1%;
   backgroundColor: grey;
   width: 95%;
@@ -67,24 +68,33 @@ class Content extends React.Component {
     this.makeRemoteRequest()
   }
 
+  imagePress = () => {
+    console.log('hello', this.props.heading)
+    const articleName = this.props.heading
+    this.props.navigation.navigate('Article', { articleName, });
+  }
+
   render() {
     return (
       <ContentView>
-        <ImageContainer>
-          <ImageBackground
-            source={{ uri: this.props.imageURL }}
-            style={{
-              flex: 1,
-              alignSelf: 'stretch',
-              width: undefined,
-              height: undefined,
-              backgroundColor: 'rgba(0,0,0,0)',
-              overflow: 'hidden',
-            }}
-          >
-            <OverlayText numberOfLines={2} ellipsizeMode='tail'>{this.props.heading.toUpperCase()}</OverlayText>
-          </ImageBackground>
-        </ImageContainer>
+        <TouchableOpacity style={{flex:1}} onPress={this.imagePress}>
+          <ImageContainer>
+            <ImageBackground
+              onPress={this.imagePress}
+              source={{ uri: this.props.imageURL }}
+              style={{
+                flex: 1,
+                alignSelf: 'stretch',
+                width: undefined,
+                height: undefined,
+                backgroundColor: 'rgba(0,0,0,0)',
+                overflow: 'hidden',
+              }}
+            >
+              <OverlayText numberOfLines={2} ellipsizeMode='tail'>{this.props.heading.toUpperCase()}</OverlayText>
+            </ImageBackground>
+          </ImageContainer>
+        </TouchableOpacity>
 
         <Button
           icon={{ name: 'code' }}
@@ -104,9 +114,9 @@ class Content extends React.Component {
                   ? I would say it contains...
                 </Text>
                 <Text numberOfLines={3} style={{ color: MAIN_COLOR }}>{this.state.tags}</Text>
-                <Text numberOfLines={1}>Does that sound right...? I am 
+                <Text numberOfLines={1}>Does that sound right...? I am
                   <Text style={{ color: MAIN_COLOR }}> {this.state.confidence}</Text>
-                 % confident.</Text>
+                  % confident.</Text>
               </View>
               :
               <View >
