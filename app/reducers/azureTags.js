@@ -25,7 +25,7 @@ export default azureTags = (state = initialState, action) => {
         isFetching: false,
         tags: action.tags
       }
-    case FETCHING_NEWS_FAILURE:
+    case FETCHING_AZURE_AI_FAILURE:
     console.log('action FETCHING_AZURE_FAILURE', action)
       return {
         ...state,

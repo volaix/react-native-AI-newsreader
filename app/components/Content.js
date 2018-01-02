@@ -1,10 +1,3 @@
-const apiKey1 = '366f283c1a95473b95e4800c7623f258'
-const apiKey2 = 'fb4ba6ab67f04ef1aabc18d60d3b2795'
-
-const visualFeatures = 'Description'
-const location = 'australiaeast'
-const requestURL = `https://${location}.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=${visualFeatures}&language=en`
-
 import React from 'react'
 import { Image, TouchableOpacity, View, Text, StyleSheet, ImageBackground } from 'react-native'
 
@@ -15,6 +8,7 @@ import styled, { css } from "styled-components/native"
 
 import { Button, Header } from 'react-native-elements'
 import { MAIN_COLOR } from '../config/sharedColors';
+import azureApi from '../apis/azureApi';
 
 
 const MainContent = styled.View`
@@ -33,12 +27,6 @@ const ImageContainer = styled.View`
   backgroundColor: grey;
   width: 95%;
   height: 70%;
-`
-
-const TempSpacer = styled.View`
-  backgroundColor: grey;
-  width: 1%;
-  height: 1%;
 `
 
 const TagBox = styled.View`
@@ -66,37 +54,17 @@ class Content extends React.Component {
   }
 
   makeRemoteRequest = async () => {
-    console.log('making remote request')
-    
+    //todo connect this up to redux and pass down 
+    const result = await azureApi(this.props.imageURL)
+    console.log(`response from azureApi`, result)
+    const tags = await result.description.tags.join(', ')
+    const textGuess = await result.description.captions[0].text
+    const confidence = await result.description.captions[0].confidence.toFixed(2) * 100
+    this.setState({ tags, textGuess, confidence })
   }
 
   handleButtonClick = () => {
-    console.log(`You have clicked the button`)
     this.makeRemoteRequest()
-
-    const imgURL = this.props.imageURL
-
-    const myBody = JSON.stringify({ "url": imgURL })
-
-    const myHeaders = new Headers({
-      "Host": "australiaeast.api.cognitive.microsoft.com",
-      "Content-Type": "application/json",
-      "Ocp-Apim-Subscription-Key": apiKey1
-    })
-
-    const init = {
-      method: 'POST',
-      headers: myHeaders,
-      body: myBody,
-    }
-
-    fetch(requestURL, init)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(JSON.stringify(data))
-        const tags = data.description.tags.join(', ')
-        this.setState(() => ({ tags: tags }))
-      })
   }
 
   render() {
@@ -114,7 +82,7 @@ class Content extends React.Component {
               overflow: 'hidden',
             }}
           >
-          <OverlayText numberOfLines={2} ellipsizeMode='tail'>{this.props.heading.toUpperCase()}</OverlayText>
+            <OverlayText numberOfLines={2} ellipsizeMode='tail'>{this.props.heading.toUpperCase()}</OverlayText>
           </ImageBackground>
         </ImageContainer>
 
@@ -123,16 +91,22 @@ class Content extends React.Component {
           title='Phone, what do you think this is?'
           onPress={this.handleButtonClick}
           containerViewStyle={{ width: '95%', }}
-          backgroundColor= {MAIN_COLOR}
+          backgroundColor={MAIN_COLOR}
         />
 
-        <TagBox style={{ alignItems: 'center', justifyContent: 'center'}}>
+        <TagBox style={{ alignItems: 'center', justifyContent: 'center' }}>
           {
             this.state.tags ?
-              <View style={{ justifyContent: "flex-start"}}>
-                <Text>Hmmm... I would say it contains...</Text>
+              <View style={{ justifyContent: "flex-start" }}>
+                <Text numberOfLines={2}>
+                  Hmm... Is it...
+                  <Text style={{ color: MAIN_COLOR }}> {this.state.textGuess}</Text>
+                  ? I would say it contains...
+                </Text>
                 <Text numberOfLines={3} style={{ color: MAIN_COLOR }}>{this.state.tags}</Text>
-                <Text>Iunno. Does that sound right...? </Text>
+                <Text numberOfLines={1}>Does that sound right...? I am 
+                  <Text style={{ color: MAIN_COLOR }}> {this.state.confidence}</Text>
+                 % confident.</Text>
               </View>
               :
               <View >

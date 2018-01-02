@@ -8,11 +8,11 @@ import {
 
 import { put, takeEvery } from 'redux-saga/effects'
 
-import theWest from '../apis/theWest'
+import azureApi from '../apis/azureApi'
 
 const fetchData = function* (action) {
   try {
-    const data = yield theWest(action.page)
+    const data = yield azureApi(action.imageURL)
     yield put({ type: FETCHING_AZURE_AI_SUCCESS, data })
   } catch (e) {
     yield put({ type: FETCHING_AZURE_AI_FAILURE })
