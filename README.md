@@ -1,6 +1,9 @@
 # AI Newsreader
 
-This app grabs The West Australian's 'Offbeat' news articles. It then sets these up to be read by Microsoft Azure's AI Vision reader. 
+This app grabs The West Australian's 'Offbeat' news articles. It then sets these up to be read by Microsoft Azure's AI Vision reader.
+* The West Australian API
+* Microsoft Azure, AI vision reader API
+* React Navigation
 * Includes infinite scrolling
 * Custom Headers and page content based on article clicked
 
