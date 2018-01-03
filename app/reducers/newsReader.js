@@ -20,7 +20,6 @@ export default newsReader = (state = initialState, action) => {
         isFetching: true,
       }
     case FETCHING_NEWS_SUCCESS:
-    console.log('action FETCHING_NEWS_SUCCESS', action)
       return {
         ...state,
         isFetching: false,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native'
 import { Card } from 'react-native-elements'
+// import GraphPieChart from '../components/GraphPieChart';
 
 const InfoScreen = () => (
   <View style={{ flex: 1, alignItems: 'center' }}>
@@ -11,6 +12,7 @@ const InfoScreen = () => (
   <Text>4. Displays what the azure bot thinks it is seeing.</Text>
   <Text>+bonus! Infinite scrolling!</Text>
 </Card>
+{/* <GraphPieChart /> */}
   </View>
 );
 

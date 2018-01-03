@@ -26,8 +26,6 @@ const removedDuplicates = relevantData.filter((item1, index, originalArray) => {
   return originalArray.findIndex((item2) => item1.imageURL === item2.imageURL) === index
 })
 
-console.log('original', relevantData)
-console.log('removed duplicates:', removedDuplicates)
 
   //expected list
   // const relevantData = [
