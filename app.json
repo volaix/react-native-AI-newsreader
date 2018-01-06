@@ -1,4 +1,6 @@
 {
+  "name": "AI-Newsreader",
+  "displayName": "AI-Newsreader",
   "expo": {
     "sdkVersion": "23.0.0"
   }

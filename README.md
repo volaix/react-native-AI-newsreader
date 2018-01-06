@@ -1,4 +1,4 @@
-### Branch Specific
+### Branch Specific: eject-for-graph
 This branch has been made to eject react native and add a graph
 
 # AI Newsreader
