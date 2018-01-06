@@ -1,4 +1,5 @@
-HELLO WORLD LOL
+### Branch Specific
+This branch has been made to eject react native and add a graph
 
 # AI Newsreader
 
