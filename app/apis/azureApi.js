@@ -22,7 +22,6 @@ const azureApi = async (imageURL) => {
   const url = `https://${location}.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=${visualFeatures}&language=en`
   const response = await fetch(url, init)
   const json = await response.json()
-  console.log(json,'unhandeled promise rejection for tags of this')
 
   return json
 }
