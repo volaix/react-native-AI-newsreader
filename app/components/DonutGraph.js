@@ -1,12 +1,8 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { VictoryBar, VictoryAxis, VictoryStack, VictoryChart, VictoryTheme } from 'victory-native'
 
-export default DonutGraph = () => (
-<View>
-  <Text> Graph goes here </Text>
-</View>
-)
-
+//todo make a pie chart with victory native
 
 // import { Surface, Group, Shape } from 'art'
 
