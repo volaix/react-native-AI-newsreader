@@ -1,33 +1,48 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { VictoryBar, VictoryAxis, VictoryStack, VictoryChart, VictoryTheme } from 'victory-native'
+// import { VictoryPie } from 'victory-native'
+import Svg,{
+  Circle,
+  Ellipse,
+  G,
+  LinearGradient,
+  RadialGradient,
+  Line,
+  Path,
+  Polygon,
+  Polyline,
+  Rect,
+  Symbol,
+  Use,
+  Defs,
+  Stop
+} from 'react-native-svg';
 
-//todo make a pie chart with victory native
-
-// import { Surface, Group, Shape } from 'art'
-
-// const data = [
-//   { "number": 8, "name": 'Fun activities' },
-//   { "number": 7, "name": 'Dog' },
-//   { "number": 16, "name": 'Food' },
-//   { "number": 23, "name": 'Car' },
-//   { "number": 42, "name": 'Rent' },
-//   { "number": 4, "name": 'Misc' },
-// ];
-
-// const DonutGraph = () => {
-//   return (
-//     <Surface width={300} height={300}>
-//       <Group x={x} y={y}>
-//         <Shape
-
-//           d={"M-68.9646319937036,-29.476762610114324A75,75,0,0,1,-49.345310456503256,-56.48044206582762L-20.635195356782273,-21.775874553905552A30,30,0,0,0,-27.086713440010442,-12.896121704557451Z"}
-//           stroke={"#2ca02c"}  // green line
-//           strokeWidth={3}
-//         />
-//       </Group>
-//     </Surface>
-//   )
-// }
-
-// export default DonutGraph
+export default class SvgExample extends React.Component {
+  render() {
+      return (
+          <Svg
+              height="100"
+              width="100"
+          >
+              <Circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  stroke="blue"
+                  strokeWidth="2.5"
+                  fill="green"
+              />
+              <Rect
+                  x="15"
+                  y="15"
+                  width="70"
+                  height="70"
+                  stroke="red"
+                  strokeWidth="2"
+                  fill="yellow"
+              />
+          </Svg>
+      );
+  }
+}
