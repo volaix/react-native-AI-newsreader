@@ -1,3 +1,6 @@
+### See it on your phone with Expo!
+https://exp.host/@volaix/ai-newsreader
+
 # AI Newsreader
 
 This app grabs The West Australian's 'Offbeat' news articles. It then sets these up to be read by Microsoft Azure's AI Vision reader.
