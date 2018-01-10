@@ -1,48 +1,19 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-// import { VictoryPie } from 'victory-native'
-import Svg,{
-  Circle,
-  Ellipse,
-  G,
-  LinearGradient,
-  RadialGradient,
-  Line,
-  Path,
-  Polygon,
-  Polyline,
-  Rect,
-  Symbol,
-  Use,
-  Defs,
-  Stop
-} from 'react-native-svg';
+import { VictoryPie } from 'victory-native'
+
+const data = [
+  { x: "Cats", y: 35 },
+  { x: "Dogs", y: 40 },
+  { x: "Birds", y: 55 }
+]
 
 export default class SvgExample extends React.Component {
   render() {
-      return (
-          <Svg
-              height="100"
-              width="100"
-          >
-              <Circle
-                  cx="50"
-                  cy="50"
-                  r="45"
-                  stroke="blue"
-                  strokeWidth="2.5"
-                  fill="green"
-              />
-              <Rect
-                  x="15"
-                  y="15"
-                  width="70"
-                  height="70"
-                  stroke="red"
-                  strokeWidth="2"
-                  fill="yellow"
-              />
-          </Svg>
-      );
+    return (
+      <View style={{ backgroundColor: 'red' }}>
+        <VictoryPie data={data} />
+      </View>
+    )
   }
 }

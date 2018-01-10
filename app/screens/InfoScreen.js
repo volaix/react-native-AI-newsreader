@@ -11,9 +11,9 @@ const InfoScreen = () => (
       <Text>3. On button click, sends images to Microsoft Azure's AI vision reader</Text>
       <Text>4. Displays what the azure bot thinks it is seeing.</Text>
       <Text>+bonus! Infinite scrolling!</Text>
-      <Text>HELLO WORLD</Text>
+      {/* <Text>HELLO WORLD</Text> */}
     </Card>
-    <DonutGraph />
+    {/* <DonutGraph /> */}
   </View>
 );
 
