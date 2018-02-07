@@ -22,6 +22,7 @@
     "exp": "^47.3.17",
     "expo": "^23.0.4",
     "react": "16.0.0",
+    "react-devtools": "^3.0.0",
     "react-native": "0.50.3",
     "react-native-elements": "^0.18.5",
     "react-navigation": "^1.0.0-beta.22",
@@ -32,6 +33,7 @@
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "^0.5.12",
+    "run": "^1.4.0",
     "rxjs": "^5.5.5",
     "styled-components": "^2.3.2",
     "victory-native": "^0.16.6"

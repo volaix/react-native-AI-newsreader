@@ -8,7 +8,6 @@ import styled, { css } from "styled-components/native"
 
 import { Button, Header } from 'react-native-elements'
 import { MAIN_COLOR } from '../config/sharedColors';
-import azureApi from '../apis/azureApi';
 import TagBox from './TagBox'
 
 
@@ -51,6 +50,7 @@ class Content extends React.Component {
   makeRemoteRequest = async () => {
     //todo connect this up to redux and pass down 
     const result = await azureApi(this.props.imageURL)
+    console.log(result) 
     const tags = await result.description.tags.join(', ')
     const textGuess = await result.description.captions[0].text
     const confidenceUnreliable = await (result.description.captions[0].confidence.toFixed(2) * 100)
@@ -101,20 +101,6 @@ class Content extends React.Component {
           </ImageContainer>
         </TouchableOpacity>
 
-        <Button
-          icon={{ name: 'code' }}
-          title='Phone, what do you think this is?'
-          onPress={this.handleButtonClick}
-          containerViewStyle={{ width: '95%', }}
-          backgroundColor={MAIN_COLOR}
-        />
-
-        <TagBox
-          textGuess={this.state.textGuess}
-          tags={this.state.tags}
-          confidence={this.state.confidence}
-          generateTagsLoading={this.state.generateTagsLoading}
-        />
       </ContentView>
     )
   }
