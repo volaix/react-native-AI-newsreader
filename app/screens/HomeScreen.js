@@ -12,6 +12,7 @@ const HomeScreenView = styled.View`
   backgroundColor: white;
   align-items: center;
   justify-content: center;
+  background-color: red;
 `
 
 class HomeScreen extends React.Component {

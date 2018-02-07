@@ -7,13 +7,13 @@ import { connect } from 'react-redux'
 import { fetchNews, increaseCurrentPage } from '../actions'
 
 const ContentContainer = styled.View`
-  backgroundColor: hsl(0, 0%, 95%);
+  backgroundColor: rgba(44, 48, 47,1);
   width: 100%;
   height: 100%;
 `
 
 const ContentBox = styled.View`
-  height: 500px;
+  height: 200;
 `
 
 const Seperator = styled.View`
