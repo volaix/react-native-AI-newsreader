@@ -1,6 +1,5 @@
-### See it on your phone with Expo!
-https://exp.host/@volaix/ai-newsreader
->>>>>>> 7a577f2a84756aa2a9b44120b4847cfe237cb812
+# MAJOR UPDATE
+I am currently taking out the AI aspect of this app as my API has been used too much. Instead I am making this project into a 'more pretty' UI as a newsreader.
 
 # AI Newsreader
 
@@ -12,9 +11,7 @@ This app grabs The West Australian's 'Offbeat' news articles. It then sets these
 * Custom Headers and page content based on article clicked
 
 ### Screenshots
-![image](https://user-images.githubusercontent.com/16506248/34509470-4139f544-f085-11e7-90a4-40e004e35e26.png)
-
-![image](https://user-images.githubusercontent.com/16506248/34509478-50e2b828-f085-11e7-88f8-6d3ea407a52c.png)
+TBA
 
 ## How to use
 
