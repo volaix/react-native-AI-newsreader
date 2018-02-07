@@ -1,5 +1,6 @@
-### Branch Specific: eject-for-graph
-This branch has been made to eject react native and add a graph
+### See it on your phone with Expo!
+https://exp.host/@volaix/ai-newsreader
+>>>>>>> 7a577f2a84756aa2a9b44120b4847cfe237cb812
 
 # AI Newsreader
 
@@ -49,9 +50,6 @@ Thanks to The West for their API! I ended up grabbing it from their open fetch r
 Thanks to Microsoft Azure for their image reader!
 
 # Todo
-* Test on Android (Should work, all styling is relative and doesnt use padding)
 * Make delays in request to server (so it feels more like facebook loading)
 * Make article button do something. "Perhaps link to original article?"
 * Tests
-* Inspiration
-* etc
